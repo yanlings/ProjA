@@ -28,3 +28,20 @@ function launchSnowflakes() {
         }, 5000);
     }
 }
+
+// Intersection Observer to reveal content on scroll
+const revealElements = document.querySelectorAll(".card, .image-card, .buttons");
+
+const observerOptions = {
+    threshold: 0.2
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show-up");
+        }
+    });
+}, observerOptions);
+
+revealElements.forEach(element => observer.observe(element));
