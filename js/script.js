@@ -30,10 +30,10 @@ function launchSnowflakes() {
 }
 
 // Intersection Observer to reveal content on scroll
-const revealElements = document.querySelectorAll(".card, .image-card, .buttons");
+const revealElements = document.querySelectorAll(".intro, .card, .image-card, .buttons");
 
 const observerOptions = {
-    threshold: 0.2
+    threshold: 0.3
 };
 
 const observer = new IntersectionObserver((entries, observer) => {
