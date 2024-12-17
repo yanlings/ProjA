@@ -2,14 +2,13 @@
 document.getElementById("yesButton").addEventListener("click", () => {
     const responseDiv = document.getElementById("response");
     responseDiv.innerHTML = "Yay! Let’s make this Christmas unforgettable! 🎅🎄💖";
-    launchSnowflakes();
+    launchSnowflakes();  // Trigger Snowflakes
 });
 
 document.getElementById("noButton").addEventListener("click", () => {
     const responseDiv = document.getElementById("response");
-    const errorDiv = document.getElementById("response");
-    errorDiv.innerHTML = "U ARE NOT ALLOWED TO SAY NO! 😱🎄";
-    errorDiv.classList.add("error-message");
+    responseDiv.innerHTML = "Oh no! You can't say no to Christmas! 😱🎄";
+    responseDiv.style.color = "#e74c3c"; // Change color to red for fun!
 });
 
 // Launch Snowflakes Animation
@@ -18,14 +17,14 @@ function launchSnowflakes() {
     for (let i = 0; i < 50; i++) {
         const snowflake = document.createElement("div");
         snowflake.className = "snowflake";
-        snowflake.innerHTML = "❄"; // You can also use an image for snowflakes
-        snowflake.style.left = Math.random() * 100 + "vw"; // Random left position
-        snowflake.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random animation speed
+        snowflake.innerHTML = "❄"; // Snowflake emoji
+        snowflake.style.left = Math.random() * 100 + "vw"; // Random position
+        snowflake.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random speed
         body.appendChild(snowflake);
 
         // Remove snowflakes after animation ends
         setTimeout(() => {
             snowflake.remove();
-        }, 10000);
+        }, 5000);
     }
 }
