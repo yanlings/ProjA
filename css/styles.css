@@ -8,8 +8,8 @@
 /* Body and Font */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: #f8f8f8; /* Light gray background */
-    color: #333; /* Dark text */
+    background: #006400; /* Dark green background */
+    color: #fff; /* White text for contrast */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,6 +17,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 20px;
+    position: relative; /* To position Christmas lights */
 }
 
 /* Main Wrapper */
@@ -27,6 +28,7 @@ body {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #333; /* Dark text inside card */
 }
 
 /* Header */
@@ -97,6 +99,27 @@ header h1 {
     100% {
         transform: translateY(100vh);
         opacity: 0;
+    }
+}
+
+/* Christmas Lights Animation */
+.christmas-light {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    left: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, #ff4757, #1e90ff, #f39c12, #2ecc71, #e74c3c);
+    background-size: 200% 100%;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
     }
 }
 
