@@ -58,11 +58,13 @@
         }
 
         .back {
-            background: url('https://www.dropbox.com/s/8hw7guch8d151kg/pattern.png?raw=1') no-repeat center/cover;
-            color: white;
+            background: #d4d1d0 url('https://www.dropbox.com/s/8hw7guch8d151kg/pattern.png?raw=1') repeat center; /* Inside card background */
+            background-size: cover; /* Adjusts the image scaling */
+            color: black; /* Text color for readability */
             text-align: center;
             padding: 20px;
             transform: rotateY(180deg);
+            border: 20px solid #d4d1d0; /* Matches the inside card color */
         }
 
         .back h2 {
