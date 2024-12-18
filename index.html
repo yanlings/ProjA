@@ -26,7 +26,6 @@
             border: 2px solid black;
             transform-style: preserve-3d;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden; /* Prevent the card from being visible initially */
         }
 
         #letter .flap{
@@ -106,9 +105,9 @@
             height: 300px;
             background-color: #f3e9dc;
             left: 50%;
-            top: 120%; /* Start hidden inside the envelope */
+            top: 50%;
             position: absolute;
-            transform: translate(-50%, -50%) translateZ(0px);
+            transform: translate(-50%, -50%) translateZ(1px);
             color: black;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
             z-index: 0;
@@ -193,10 +192,26 @@
             css: { rotationX: 180 },
             ease: Power2.easeInOut
         }, '+=0.5')
-        .to('#letter .card', 0.8, {
-            css: { y: '-=200' }, /* Slide card upward after flap */
+        .to('#letter', 0.8, {
+            css: { y: '+=200' },
             ease: Power2.easeInOut
-        }, '+=0.5');
+        }, '-=0.8')
+        .to('#letter .card', 0.8, {
+            css: { y: '-=400' },
+            ease: Power2.easeInOut
+        })
+        .to('#letter .card', 0.8, {
+            css: { z: '+=1500' },
+            ease: Power2.easeInOut
+        }, '-=0.2')
+        .to('#letter', 0.8, {
+            css: { z: '-=1200' },
+            ease: Power2.easeInOut
+        }, '-=0.8')
+        .to('#letter .card', 0.8, {
+            css: { y: '+=100' },
+            ease: Power2.easeInOut
+        }, '-=0.8');
 
         document.getElementById('restart').addEventListener('click', () => {
             timeline.restart();
