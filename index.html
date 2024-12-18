@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christmas Invitation</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="card-container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Valentine's Day</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
     <div class="card">
-      <div class="card-content">
-        <h1>Christmas Invitation!</h1>
-        <p>
-          Will you join me for a special Christmas celebration?  
-          <br> 
-          Date: 25th December  
-          <br> 
-          Time: 7:00 PM  
-          <br> 
-          Venue: My Place 🎄
-        </p>
-        <div class="button-container">
-          <button class="no-button" id="no-button" onclick="shrinkNo()">No</button>
-          <button class="yes-button" id="yes-button" onclick="showFestive()">Yes</button>
+      <div class="back"></div>
+      <div class="front">
+        <div class="heart-container">
+          <div class="heart-1"></div>
+          <div class="heart-2"></div>
+          <div class="heart-3"></div>
         </div>
       </div>
+
+      <div class="textContainer">
+        <p id="header">Happy Valentine's Day!</p>
+        <p>Life without you is like HTML without CSS</p>
+      </div>
     </div>
-  </div>
-
-  <!-- Snowflake Container -->
-  <div id="snowflakes"></div>
-
-  <script src="script.js"></script>
-</body>
+  </body>
 </html>
