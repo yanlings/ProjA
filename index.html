@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #008000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,6 +17,23 @@
             overflow: hidden;
         }
 
+        /* Snowflake styles */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1rem;
+            user-select: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Card container styles */
         .card-container {
             position: relative;
             width: 300px;
@@ -129,11 +146,26 @@
     </div>
 
     <script>
+        // Add snowflakes
+        function createSnowflakes() {
+            const body = document.body;
+            const snowflakeCount = 50;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.innerHTML = '&#10052;';
+                body.appendChild(snowflake);
+            }
+        }
+
         window.addEventListener('load', () => {
             const cardContainer = document.getElementById('cardContainer');
             setTimeout(() => {
                 cardContainer.classList.add('open');
             }, 500);
+            createSnowflakes();
         });
     </script>
 </body>
