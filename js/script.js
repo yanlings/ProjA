@@ -1,47 +1,36 @@
-// Event Listeners for Buttons
-document.getElementById("yesButton").addEventListener("click", () => {
-    const responseDiv = document.getElementById("response");
-    responseDiv.innerHTML = "Yay! Let’s make this Christmas unforgettable! 🎅🎄💖";
-    launchSnowflakes();  // Trigger Snowflakes
-});
-
-document.getElementById("noButton").addEventListener("click", () => {
-    const responseDiv = document.getElementById("response");
-    responseDiv.innerHTML = "Oh no! You can't say no to Christmas! 😱🎄";
-    responseDiv.style.color = "#e74c3c"; // Change color to red for fun!
-});
-
-// Launch Snowflakes Animation
-function launchSnowflakes() {
-    const body = document.body;
+function shrinkNo() {
+    const noButton = document.getElementById("no-button");
+    const yesButton = document.getElementById("yes-button");
+  
+    // Shrink "No" Button
+    noButton.style.transform = "scale(0.5)";
+    noButton.style.opacity = "0.7";
+  
+    // Grow "Yes" Button
+    yesButton.style.transform = "scale(1.2)";
+    yesButton.style.opacity = "1";
+  }
+  
+  function showFestive() {
+    // Generate Snowflakes
+    const snowflakeContainer = document.getElementById("snowflakes");
     for (let i = 0; i < 50; i++) {
-        const snowflake = document.createElement("div");
-        snowflake.className = "snowflake";
-        snowflake.innerHTML = "❄"; // Snowflake emoji
-        snowflake.style.left = Math.random() * 100 + "vw"; // Random position
-        snowflake.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random speed
-        body.appendChild(snowflake);
-
-        // Remove snowflakes after animation ends
-        setTimeout(() => {
-            snowflake.remove();
-        }, 5000);
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.innerHTML = "❄️";
+      snowflake.style.left = Math.random() * 100 + "vw";
+      snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
+      snowflakeContainer.appendChild(snowflake);
     }
-}
-
-// Intersection Observer to reveal content on scroll
-const revealElements = document.querySelectorAll(".intro, .card, .image-card, .buttons");
-
-const observerOptions = {
-    threshold: 0.3
-};
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show-up");
-        }
-    });
-}, observerOptions);
-
-revealElements.forEach(element => observer.observe(element));
+  
+    // Add Hats
+    const hats = document.createElement("div");
+    hats.className = "snowflake";
+    hats.innerHTML = "🎅";
+    hats.style.fontSize = "40px";
+    hats.style.left = "50%";
+    hats.style.animationDuration = "5s";
+    snowflakeContainer.appendChild(hats);
+  }
+  

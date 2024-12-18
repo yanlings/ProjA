@@ -1,121 +1,102 @@
 /* General Reset */
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body and Font */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #006400; /* Dark green background */
-    color: #fff; /* White text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Prevent scrollbars */
+  }
+  
+  /* Card Container */
+  .card-container {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Card */
+  .card {
+    background: white;
+    width: 350px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    padding: 0;
-    position: relative;
-}
-
-/* Main Wrapper */
-.main-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    color: #333;
-    min-height: 100vh;
-}
-
-/* Intro Section (Merry Christmas message) */
-.intro {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-/* Card Section for Plan of the Day */
-.card {
-    background-color: white;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-.card h2 {
+  }
+  
+  .card-content h1 {
+    color: #ff4e50;
     font-size: 2rem;
-    color: #e74c3c;
-    margin-bottom: 15px;
-}
-
-.card p {
-    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-content p {
+    font-size: 1rem;
+    line-height: 1.5;
     color: #333;
-    line-height: 1.6;
-}
-
-/* Image Cards Section */
-.images {
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 50px;
-}
-
-.image-card {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-.image-card img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Buttons */
-.buttons {
-    margin-top: 50px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-.buttons button {
-    font-size: 1.2rem;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  button {
     padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
+    font-size: 1rem;
     border: none;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
-
-#yesButton {
-    background-color: #2ecc71; /* Green button */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .no-button {
+    background: #ff6b6b;
     color: white;
-}
-
-#noButton {
-    background-color: #e74c3c; /* Red button */
+  }
+  
+  .yes-button {
+    background: #6bcf63;
     color: white;
-}
-
-/* Button Hover Effect */
-.buttons button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Animation when scrolled */
-.show-up {
-    opacity: 1;
-    transform: translateY(0);
-}
+  }
+  
+  .no-button:hover {
+    background: #fa5252;
+  }
+  
+  .yes-button:hover {
+    background: #5bae50;
+  }
+  
+  /* Snowflake Styles */
+  #snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .snowflake {
+    position: absolute;
+    top: -10%;
+    color: white;
+    font-size: 20px;
+    animation: fall linear infinite;
+  }
+  
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+  

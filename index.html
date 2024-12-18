@@ -3,26 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Date Invitation</title>
+  <title>Christmas Invitation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="card-container">
     <div class="card">
       <div class="card-content">
-        <h1>You're Invited!</h1>
+        <h1>Christmas Invitation!</h1>
         <p>
-          Will you join me for a special date night?  
+          Will you join me for a special Christmas celebration?  
           <br> 
-          Date: [Insert Date Here]
+          Date: 25th December  
           <br> 
-          Time: [Insert Time Here]
+          Time: 7:00 PM  
           <br> 
-          Venue: [Insert Venue Here]
+          Venue: My Place 🎄
         </p>
-        <button class="rsvp-button" onclick="alert('Yay! Can’t wait to see you!')">RSVP</button>
+        <div class="button-container">
+          <button class="no-button" id="no-button" onclick="shrinkNo()">No</button>
+          <button class="yes-button" id="yes-button" onclick="showFestive()">Yes</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Snowflake Container -->
+  <div id="snowflakes"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
