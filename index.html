@@ -3,219 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Envelope and Card</title>
+    <title>Christmas Invitation</title>
     <style>
-        html, body{
+        body {
             margin: 0;
-            height: 100%;
-            width: 100%;
-            background: #3A3276;
-            font-family: 'Source Sans Pro', Arial, sans-serif;
-            color: #fff;
-            perspective: 2000px;
-        }
-
-        #letter{
-            width: 600px;
-            height: 400px;
-            background: white;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid black;
-            transform-style: preserve-3d;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        #letter .flap{
-            position: absolute;
-            width: 600px;
-            height: 200px;
-            background: white;
-            border: 2px solid black;
-        }
-        
-        #letter .flap.top{
-            width: 0;
-            height: 0;
-            border-left: 300px solid transparent;
-            border-right: 300px solid transparent;
-            border-bottom: 200px solid white;
-            transform-origin: top;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        #letter .flap.bottom{
-            width: 0;
-            height: 0;
-            border-left: 300px solid transparent;
-            border-right: 300px solid transparent;
-            border-top: 200px solid white;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        #letter .flap.left, #letter .flap.right {
-            width: 0;
-            height: 0;
-            border-top: 200px solid transparent;
-            border-bottom: 200px solid transparent;
-            position: absolute;
-        }
-
-        #letter .flap.left{
-            border-right: 300px solid white;
-            left: 0;
-            top: 0;
-            z-index: 1;
-        }
-
-        #letter .flap.right{
-            border-left: 300px solid white;
-            right: 0;
-            top: 0;
-            z-index: 1;
-        }
-
-        #letter .back{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform: translateZ(-1px) rotateY(180deg);
+            font-family: 'Arial', sans-serif;
             display: flex;
-            align-items: center;
             justify-content: center;
-            flex-direction: column;
-            background: #ddd;
-            color: black;
-            border: 2px solid black;
-            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.2);
+            align-items: center;
+            height: 100vh;
+            background: #f0f8ff;
+            overflow: hidden;
         }
 
-        #letter .card{
-            border: 2px solid grey;
-            width: 500px;
-            height: 300px;
-            background-color: #f3e9dc;
-            left: 50%;
-            top: 50%;
-            position: absolute;
-            transform: translate(-50%, -50%) translateZ(1px);
-            color: black;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-            z-index: 0;
+        .card-container {
+            position: relative;
+            perspective: 1000px;
         }
 
-        #letter .card h1{
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        #letter .card pre{
-            padding: 10px;
-            font-family: monospace;
-            line-height: 1.5em;
-        }
-        
-        #letter .card .sign{
-            position: absolute;
-            font-family: cursive;
-            right: 40px;
-            bottom: 20px;
+        .card {
+            width: 300px;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
         }
 
-        #restart{
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
             position: absolute;
-            right: 10px;
-            top: 10px;
-            background: none;
-            border: none;
-            font-size: 1.8em;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: url('https://source.unsplash.com/300x400/?christmas') no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
-            cursor: pointer;
-            outline: none;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .back {
+            background: #0d1b2a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            transform: rotateY(180deg);
+        }
+
+        .back h2 {
+            margin-bottom: 20px;
+        }
+
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px);
+                opacity: 0;
+            }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </head>
 <body>
-    <button id="restart">Restart</button>
-    <div id="letter">
-        <div class="flap top"></div>
-        <div class="flap left"></div>
-        <div class="flap right"></div>
-        <div class="flap bottom"></div>
-        <div class="back">
-            <h1>To. Nathanael</h1>
-            <h3>From. Robert</h3>
-        </div>
+    <div class="card-container">
         <div class="card">
-            <h1>Happy Birthday!!</h1>
-            <pre>
-<b>Error</b>: <span style="color: darkred;">No Message Provided</span>
-<b>Message</b>: <span style="color: darkred;">Unfortunately the author of this letter ran out of ideas</span>
-<span style="color: darkred;">and spent all their time making the envelope.</span>
-<b>Stack</b>: OpenLetter() @ main.js line 12
-           RecieveLetter() @ main.js line 20
-           SendLetter() @ main.js line 50
-           WriteLetter() @ main.js line 86
-           ThinkOfPerson() @ main.js line 120
-            </pre>
-            <span class="sign"><i>From. Robert</i></span>
+            <div class="front">
+                <div>A Magical Christmas Awaits You...</div>
+            </div>
+            <div class="back">
+                <h2>Will You Be My Christmas Date?</h2>
+                <p>Date: December 25, 2024</p>
+                <p>Time: 7:00 PM</p>
+                <p>Location: Winter Wonderland Cafe</p>
+                <p>Let's make this Christmas magical!</p>
+            </div>
         </div>
+        <div class="snowflakes"></div>
     </div>
-    <script>
-        var timeline = new TimelineMax({repeat: 0});
-        
-        timeline.set('#letter', {
-            css: {
-                x: -window.innerWidth * 2,
-                rotationY: 180
-            }
-        })
-        .to('#letter', 1, {
-            css: { x: "-50%" },
-            ease: Power3.easeOut
-        }, 1)
-        .to('#letter', 0.8, {
-            css: { rotationY: 0 },
-            ease: Power3.easeOut
-        }, '+=2')
-        .to('#letter .flap.top', 0.8, {
-            css: { rotationX: 180 },
-            ease: Power2.easeInOut
-        }, '+=0.5')
-        .to('#letter', 0.8, {
-            css: { y: '+=200' },
-            ease: Power2.easeInOut
-        }, '-=0.8')
-        .to('#letter .card', 0.8, {
-            css: { y: '-=400' },
-            ease: Power2.easeInOut
-        })
-        .to('#letter .card', 0.8, {
-            css: { z: '+=1500' },
-            ease: Power2.easeInOut
-        }, '-=0.2')
-        .to('#letter', 0.8, {
-            css: { z: '-=1200' },
-            ease: Power2.easeInOut
-        }, '-=0.8')
-        .to('#letter .card', 0.8, {
-            css: { y: '+=100' },
-            ease: Power2.easeInOut
-        }, '-=0.8');
 
-        document.getElementById('restart').addEventListener('click', () => {
-            timeline.restart();
-        });
+    <script>
+        function createSnowflakes() {
+            const snowflakeContainer = document.querySelector('.snowflakes');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflakeContainer.appendChild(snowflake);
+            }
+        }
+
+        createSnowflakes();
     </script>
 </body>
 </html>
