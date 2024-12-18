@@ -1,175 +1,161 @@
+html, body{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	min-width: 800px;
+	min-height: 800px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+body { 
+	font-family: 'Source Sans Pro', Arial, sans-serif; 
+	background: #3A3276; 
+	color: #fff; 
+	perspective: 2000px;
+}
+pre{
+    font-family: monospace;
+    line-height: 1.5em;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.underline{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.red{
+	color: darkred;
+}
+span.fn{
+	color: darkgreen;
+}
+.stamp{
+	width: 150px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+.corner-image{
+	width: 100px;
+	position: absolute;
+}
+.corner-image.bottom-left{
+	bottom: 0px;
+	left: 0px;
+	transform: scaleX(-1);
+}
+.corner-image.top-right{
+	top: 0px;
+	right: 0px;
+	transform: scaleY(-1);
+}
+img{
+	pointer-events: none;
+}
+#letter .background{
+	background-color: #ffffff;
+	background-image: url("https://www.transparenttextures.com/patterns/my-little-plaid-dark.png");
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: translateZ(1px);
+}
 
-:root {
-    --border-color: rgb(255, 193, 203);
-    --background: rgb(230, 240, 230);
-    --front-bg: rgb(162, 227, 243);
-    --front-bg-darken: rgb(112, 177, 193);
-    --shadow: rgba(0, 0, 0, 0.1);
-    --drop-shadow: rgba(0, 0, 0, 0.5);
-    --text: #331717;
-  }
-  
-  html,
-  body {
-    overflow: hidden;
-    background-color: #808080;
+#restart{
+	font-family: 'Source Sans Pro', Arial, sans-serif; 
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background: none;
+	border: none;
+	font-size: 1.8em;
+	color: white;
+	cursor: pointer;
+	outline: none;
+}
+
+#letter{
+	width: 600px;
+	height: 400px;
+	background: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid black;
+	transform-style: preserve-3d;
+}
+#letter .flap{
+    transform: translateZ(2px);
+	position: absolute;
+	width: 600px;
+	height: 400px;
+	overflow: hidden;
+}
+#letter .flap::before{
+	display: block;
+	content: '';
+	box-sizing: border-box;
+    height: 600px;
+    width: 600px;
+	background: white;
+}
+#letter .flap.top{
+    transform: translateZ(3px);
+	transform-origin: top;
+    border-top: 2px solid black;
+}
+#letter .flap.top::before{
+    background: white;
+    height: 600px;
+    width: 600px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    filter: drop-shadow(16px 16px 20px black);
+    transform: translateY(-420px) rotateZ(45deg);
+    border-radius: 40px;
+}
+#letter .flap.left::before, #letter .flap.right::before{
+	border: 2px solid black;
+	transform: translateY(-90px) translateX(-520px) rotate(-45deg) skewX(11.8deg) skewY(11.8deg);
+}
+#letter .flap.bottom::before{
+	border: 2px solid black;
+    transform: translate(-5px,240px) rotate(-45deg) skewX(8deg) skewY(8deg);
+    border-radius: 15px;
+}
+#letter .flap.right{
+	transform: translateZ(2px) scaleX(-1);
+}
+#letter .back{
+	position: absolute;
     width: 100%;
     height: 100%;
-  }
-  
-  .card {
-    position: relative;
-    width: 425px;
+    transform: translateZ(-1px) rotateY(180deg);
+    top: 0px;
+    left: 0px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#letter .card{
+	border: 2px solid grey;
+    width: 500px;
     height: 300px;
-    border: 10px solid var(--border-color);
-    margin: 360px auto;
-    box-shadow: inset 10px 0px 15px 0px var(--shadow);
-    background-color: var(--background);
-  }
-  
-  .card .textContainer {
-    width: 80%;
-    height: 80%;
-    margin: auto;
-  }
-  
-  .card .textContainer #header {
-    font-size: 1.5rem;
-    margin: 60px auto;
-  }
-  
-  .card p {
-    font-family: 'Roboto';
-    font-size: 1.1rem;
-    line-height: 1.4;
-    color: var(--text);
-    font-style: italic;
-    text-align: center;
-    margin: 30px auto;
-  }
-  
-  .card .front {
+    background-color: #f3e9dc;
+	background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    left: 50%;
+    top: 50%;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: -10px 0px 0px -10px;
-    border: 10px solid var(--border-color);
-    backface-visibility: hidden;
-    background-color: var(--front-bg);
-    background-size: contain;
-    transform-style: preserve-3d;
-    transform-origin: 50% 0%;
-    transform: perspective(800px) rotateX(0deg);
-    transition: all 0.8s ease-in-out;
-  }
-  
-  .card:hover .front {
-    transform: perspective(800px) rotateX(170deg);
-  }
-  
-  .card .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 10px solid var(--border-color);
-    margin: -10px 0px 0px -10px;
-    backface-visibility: visible;
-    filter: drop-shadow(2px 2px 4px var(--drop-shadow));
-    transform-style: preserve-3d;
-    transform-origin: 50% 0%;
-    transform: perspective(800px) rotateX(0deg);
-    transition: all 0.8s ease-in-out;
-    background-color: var(--background);
-    box-shadow: 0 0 0 0 var(--shadow);
-  }
-  
-  .card:hover .back {
-    transform: perspective(800px) rotateX(170deg);
-    box-shadow: 0px 5px 10px 0px var(--shadow), inset 2px 0px 15px 0px var(--shadow);
-  }
-  
-  .heart-container {
-    position: relative;
-    top: calc(50% - 50px);
-    left: calc(50% - 50px);
-  }
-  
-  .heart-1 {
-    position: absolute;
-    background-color: red;
-    filter: drop-shadow(0px 0px 5px var(--drop-shadow));
-    height: 100px;
-    width: 100px;
-    margin: 0 auto;
-    transform: rotate(-45deg);
-  }
-  .heart-1:before,
-  .heart-1:after {
-    content: "";
-    position: absolute;
-    background-color: red;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-  }
-  .heart-1:before{
-    top: -50px
-  }
-  .heart-1:after {
-    left: 50px;
-  }
-  
-  .heart-2 {
-    position: absolute;
-    background-color: rgb(255, 0, 85);
-    filter: drop-shadow(0px 0px 5px var(--drop-shadow));
-    height: 80px;
-    width: 80px;
-    margin: 0 auto;
-    transform: rotate(-45deg);
-    top: 25px;
-    left: 11px;
-  }
-  .heart-2:before,
-  .heart-2:after {
-    content: "";
-    position: absolute;
-    background-color: rgb(255, 0, 85);
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-  }
-  .heart-2:before{
-    top: -40px
-  }
-  .heart-2:after {
-    left: 40px;
-  }
-  
-  .heart-3 {
-    position: absolute;
-    background-color: rgb(255, 60, 125);
-    filter: drop-shadow(0px 0px 5px var(--drop-shadow));
-    height: 60px;
-    width: 60px;
-    margin: 0 auto;
-    transform: rotate(-45deg);
-    top: 49px;
-    left: 21px;
-  }
-  .heart-3:before,
-  .heart-3:after {
-    content: "";
-    position: absolute;
-    background-color: rgb(255, 60, 125);
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-  }
-  .heart-3:before{
-    top: -30px
-  }
-  .heart-3:after {
-    left: 30px;
-  }
-  
+    transform: translate(-50%, -50%) translateZ(1px);
+	color: black;
+}
+#letter .card .sign{
+	position: absolute;
+	font-family: cursive;
+	right: 40px;
+	bottom: 20px;
+}

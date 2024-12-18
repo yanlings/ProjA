@@ -1,143 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Date Invitation</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #fdecec;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        .envelope {
-            position: absolute;
-            bottom: 0;
-            width: 300px;
-            height: 200px;
-            background: #e74c3c;
-            border-radius: 0 0 10px 10px;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 0;
-            width: 300px;
-            height: 100px;
-            background: #e74c3c;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            z-index: -1;
-        }
-
-        .card {
-            position: absolute;
-            bottom: 20px;
-            left: 10px;
-            width: 280px;
-            height: 180px;
-            background: #fff;
-            border-radius: 5px;
-            text-align: center;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 1s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .card.show {
-            transform: translateY(-120%);
-        }
-
-        .card h1 {
-            font-size: 1.8rem;
-            margin: 0 0 10px;
-            color: #e74c3c;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .hearts {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.5rem;
-            color: #e74c3c;
-            animation: float 1.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes float {
-            from {
-                transform: translate(-50%, 0);
-            }
-            to {
-                transform: translate(-50%, -10px);
-            }
-        }
-
-        .button-container {
-            position: absolute;
-            bottom: -60px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .open-button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background: #27ae60;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .open-button:hover {
-            background: #2ecc71;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="envelope">
-            <div class="hearts">&#10084;</div>
-        </div>
-        <div class="card" id="card">
-            <h1>You're Invited!</h1>
-            <p>Join me for a magical Christmas evening!<br>December 25th at 7 PM</p>
-        </div>
-        <div class="button-container">
-            <button class="open-button" onclick="openCard()">Open Invitation</button>
-        </div>
-    </div>
-
-    <script>
-        function openCard() {
-            const card = document.getElementById('card');
-            card.classList.add('show');
-        }
-    </script>
-</body>
-</html>
+<div id="letter">
+	<div class="background"></div>
+	<div class="flap top"></div>
+	<div class='flap left'></div>
+	<div class='flap right'></div>
+	<div class='flap bottom'></div>
+	<div class="card">
+		<img class="corner-image bottom-left" src="http://images.clipartpanda.com/simple-line-border-4ibderyig.png"/>
+		<img class="corner-image top-right" src="http://images.clipartpanda.com/simple-line-border-4ibderyig.png"/>
+		<center><h1>Happy Birthday!!</h1></center>
+		<pre>
+<b>Error</b>: <span class="red">No Message Provided</span>
+<b>Message</b>: <span class="red">Unfortunaly the author of this letter ran out of ideas</span>
+       <span class="red">and spent all thier time making the envelope.</span>
+<b>Stack</b>: <span class="fn underline">OpenLetter</span>(letter) @ <span class="underline">main.js line 12</span>
+       <span class="fn underline">RecieveLetter</span>(letter, mailMan) @ <span class="underline">main.js line 20</span>
+       <span class="fn underline">SendLetter</span>(author, letter, mailMan) @ <span class="underline">main.js line 50</span>
+       <span class="fn underline">WriteLetter</span>(author, paper, pen) @ <span class="underline">main.js line 86</span>
+       <span class="fn underline">ThinkOfPerson</span>(author) @ <span class="underline">main.js line 120</span>
+		</pre>
+		<span class="sign"><i>From. Robert</i></span>
+	</div>
+	<div class="back">
+		<img class="stamp" src="http://www.selfstamps.com/bulk-mail-stamps/images/FirstClass1.jpg"/>
+		<h1>To. Nathanael</h1>
+		<h3>From. Robert</h3>
+	</div>
+</div>

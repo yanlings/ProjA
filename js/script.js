@@ -1,36 +1,37 @@
-function shrinkNo() {
-    const noButton = document.getElementById("no-button");
-    const yesButton = document.getElementById("yes-button");
-  
-    // Shrink "No" Button
-    noButton.style.transform = "scale(0.5)";
-    noButton.style.opacity = "0.7";
-  
-    // Grow "Yes" Button
-    yesButton.style.transform = "scale(1.2)";
-    yesButton.style.opacity = "1";
-  }
-  
-  function showFestive() {
-    // Generate Snowflakes
-    const snowflakeContainer = document.getElementById("snowflakes");
-    for (let i = 0; i < 50; i++) {
-      const snowflake = document.createElement("div");
-      snowflake.className = "snowflake";
-      snowflake.innerHTML = "❄️";
-      snowflake.style.left = Math.random() * 100 + "vw";
-      snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
-      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
-      snowflakeContainer.appendChild(snowflake);
-    }
-  
-    // Add Hats
-    const hats = document.createElement("div");
-    hats.className = "snowflake";
-    hats.innerHTML = "🎅";
-    hats.style.fontSize = "40px";
-    hats.style.left = "50%";
-    hats.style.animationDuration = "5s";
-    snowflakeContainer.appendChild(hats);
-  }
-  
+var timeline = new TimelineMax();
+timeline.set('#letter', {
+	css:{
+		x: -window.innerWidth*2,
+		rotationY: 180
+	}
+}).set('#card', {
+	css:{autoAlpha: 0}
+}).to('#letter', 1, {
+	css:{
+		x: "-50%"
+	}, 
+	ease: Power3.easeOut
+}, 1).to('#letter', 0.8, {
+	css:{
+		rotationY: 0
+	}, 
+	ease: Power3.easeOut
+}, '+=2').to('#letter .flap.top', 0.8, {
+	css:{rotationX: 180, z: 0}, 
+	ease: Power2.easeInOut
+}, '+=0.5').to('#letter', 0.8, {
+	css:{y: '+=200'}, 
+	ease: Power2.easeInOut
+}, '-=0.8').to('#letter .card', 0.8, {
+	css:{y:'-=400'}, 
+	ease: Power2.easeInOut
+}).to('#letter .card', 0.8, {
+	css:{z:'+=1500'},
+	ease: Power2.easeInOut
+}, '-=0.2').to('#letter', 0.8, {
+	css:{z:'-=1200'}, 
+	ease: Power2.easeInOut
+}, '-=0.8').to('#letter .card', 0.8, {
+	css:{y:'+=100'}, 
+	ease: Power2.easeInOut
+}, '-=0.8')
