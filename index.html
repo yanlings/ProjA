@@ -18,45 +18,84 @@
         }
 
         .card-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
             perspective: 1000px;
         }
 
         .card {
+            position: absolute;
             width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-flap {
+            position: absolute;
+            width: 150px;
             height: 400px;
             background: linear-gradient(to bottom, #ff6b6b, #ff4757);
             color: white;
             text-align: center;
-            border-radius: 10px;
-            transform-origin: top;
-            transform: rotateX(90deg);
-            transition: transform 1s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .card.open {
-            transform: rotateX(0deg);
-        }
-
-        .card-content {
-            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            transform-origin: left;
+            transition: transform 1s ease-in-out;
+        }
+
+        .card-flap.right {
+            left: 150px;
+            transform-origin: right;
+            transform: rotateY(90deg);
+        }
+
+        .card-container.open .card-flap.left {
+            transform: rotateY(-90deg);
+        }
+
+        .card-container.open .card-flap.right {
+            transform: rotateY(90deg);
+        }
+
+        .card-content {
+            position: absolute;
+            width: 100%;
             height: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 1s ease-in-out 0.5s;
         }
 
-        .card h1 {
-            margin: 0;
+        .card-container.open .card-content {
+            opacity: 1;
+        }
+
+        h1 {
             font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
-        .card p {
-            margin: 10px 0 20px;
+        p {
             font-size: 1rem;
+            margin: 5px 0;
         }
 
-        .card button {
+        button {
             padding: 10px 20px;
             background-color: #2ed573;
             border: none;
@@ -66,30 +105,34 @@
             cursor: pointer;
         }
 
-        .card button:hover {
+        button:hover {
             background-color: #1e9e59;
         }
     </style>
 </head>
 <body>
-    <div class="card-container">
-        <div class="card" id="invitationCard">
-            <div class="card-content">
-                <h1>You're Invited!</h1>
-                <p>Join us for a Christmas date filled with joy and cheer!</p>
-                <p><strong>Date:</strong> December 25, 2024</p>
-                <p><strong>Time:</strong> 7:00 PM</p>
-                <p><strong>Location:</strong> Winter Wonderland Cafe</p>
-                <button>RSVP Now</button>
-            </div>
+    <div class="card-container" id="cardContainer">
+        <div class="card-flap left" id="leftFlap">
+            <p>Merry</p>
+        </div>
+        <div class="card-flap right" id="rightFlap">
+            <p>Christmas</p>
+        </div>
+        <div class="card-content">
+            <h1>You're Invited!</h1>
+            <p>Join us for a Christmas date filled with joy and cheer!</p>
+            <p><strong>Date:</strong> December 25, 2024</p>
+            <p><strong>Time:</strong> 7:00 PM</p>
+            <p><strong>Location:</strong> Winter Wonderland Cafe</p>
+            <button>RSVP Now</button>
         </div>
     </div>
 
     <script>
         window.addEventListener('load', () => {
-            const card = document.getElementById('invitationCard');
+            const cardContainer = document.getElementById('cardContainer');
             setTimeout(() => {
-                card.classList.add('open');
+                cardContainer.classList.add('open');
             }, 500);
         });
     </script>
