@@ -1,31 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Valentine's Day</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="card">
-      <div class="back"></div>
-      <div class="front">
-        <div class="heart-container">
-          <div class="heart-1"></div>
-          <div class="heart-2"></div>
-          <div class="heart-3"></div>
-        </div>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Invitation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-      <div class="textContainer">
-        <p id="header">Happy Valentine's Day!</p>
-        <p>Life without you is like HTML without CSS</p>
-      </div>
+        .card-container {
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(to bottom, #ff6b6b, #ff4757);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            transform-origin: top;
+            transform: rotateX(90deg);
+            transition: transform 1s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card.open {
+            transform: rotateX(0deg);
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .card h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            margin: 10px 0 20px;
+            font-size: 1rem;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            background-color: #2ed573;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #1e9e59;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card" id="invitationCard">
+            <div class="card-content">
+                <h1>You're Invited!</h1>
+                <p>Join us for a Christmas date filled with joy and cheer!</p>
+                <p><strong>Date:</strong> December 25, 2024</p>
+                <p><strong>Time:</strong> 7:00 PM</p>
+                <p><strong>Location:</strong> Winter Wonderland Cafe</p>
+                <button>RSVP Now</button>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <script>
+        window.addEventListener('load', () => {
+            const card = document.getElementById('invitationCard');
+            setTimeout(() => {
+                card.classList.add('open');
+            }, 500);
+        });
+    </script>
+</body>
 </html>
