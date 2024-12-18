@@ -1,28 +1,170 @@
-<div id="letter">
-	<div class="background"></div>
-	<div class="flap top"></div>
-	<div class='flap left'></div>
-	<div class='flap right'></div>
-	<div class='flap bottom'></div>
-	<div class="card">
-		<img class="corner-image bottom-left" src="http://images.clipartpanda.com/simple-line-border-4ibderyig.png"/>
-		<img class="corner-image top-right" src="http://images.clipartpanda.com/simple-line-border-4ibderyig.png"/>
-		<center><h1>Happy Birthday!!</h1></center>
-		<pre>
-<b>Error</b>: <span class="red">No Message Provided</span>
-<b>Message</b>: <span class="red">Unfortunaly the author of this letter ran out of ideas</span>
-       <span class="red">and spent all thier time making the envelope.</span>
-<b>Stack</b>: <span class="fn underline">OpenLetter</span>(letter) @ <span class="underline">main.js line 12</span>
-       <span class="fn underline">RecieveLetter</span>(letter, mailMan) @ <span class="underline">main.js line 20</span>
-       <span class="fn underline">SendLetter</span>(author, letter, mailMan) @ <span class="underline">main.js line 50</span>
-       <span class="fn underline">WriteLetter</span>(author, paper, pen) @ <span class="underline">main.js line 86</span>
-       <span class="fn underline">ThinkOfPerson</span>(author) @ <span class="underline">main.js line 120</span>
-		</pre>
-		<span class="sign"><i>From. Robert</i></span>
-	</div>
-	<div class="back">
-		<img class="stamp" src="http://www.selfstamps.com/bulk-mail-stamps/images/FirstClass1.jpg"/>
-		<h1>To. Nathanael</h1>
-		<h3>From. Robert</h3>
-	</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Envelope and Card</title>
+    <style>
+        html, body{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            background: #3A3276;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            color: #fff;
+            perspective: 2000px;
+        }
+
+        #letter{
+            width: 600px;
+            height: 400px;
+            background: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            transform-style: preserve-3d;
+        }
+
+        #letter .flap{
+            position: absolute;
+            width: 600px;
+            height: 400px;
+        }
+        
+        #letter .flap.top{
+            transform-origin: top;
+            transform: translateZ(3px);
+            background: #fff;
+            border-top: 2px solid black;
+        }
+
+        #letter .back{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(-1px) rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #ddd;
+            color: black;
+        }
+
+        #letter .card{
+            border: 2px solid grey;
+            width: 500px;
+            height: 300px;
+            background-color: #f3e9dc;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%) translateZ(1px);
+            color: black;
+        }
+
+        #letter .card h1{
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        #letter .card pre{
+            padding: 10px;
+            font-family: monospace;
+            line-height: 1.5em;
+        }
+        
+        #letter .card .sign{
+            position: absolute;
+            font-family: cursive;
+            right: 40px;
+            bottom: 20px;
+        }
+
+        #restart{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            color: white;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+</head>
+<body>
+    <button id="restart">Restart</button>
+    <div id="letter">
+        <div class="flap top"></div>
+        <div class="back">
+            <h1>To. Nathanael</h1>
+            <h3>From. Robert</h3>
+        </div>
+        <div class="card">
+            <h1>Happy Birthday!!</h1>
+            <pre>
+<b>Error</b>: <span style="color: darkred;">No Message Provided</span>
+<b>Message</b>: <span style="color: darkred;">Unfortunately the author of this letter ran out of ideas</span>
+<span style="color: darkred;">and spent all their time making the envelope.</span>
+<b>Stack</b>: OpenLetter() @ main.js line 12
+           RecieveLetter() @ main.js line 20
+           SendLetter() @ main.js line 50
+           WriteLetter() @ main.js line 86
+           ThinkOfPerson() @ main.js line 120
+            </pre>
+            <span class="sign"><i>From. Robert</i></span>
+        </div>
+    </div>
+    <script>
+        var timeline = new TimelineMax({repeat: 0});
+        
+        timeline.set('#letter', {
+            css: {
+                x: -window.innerWidth * 2,
+                rotationY: 180
+            }
+        })
+        .to('#letter', 1, {
+            css: { x: "-50%" },
+            ease: Power3.easeOut
+        }, 1)
+        .to('#letter', 0.8, {
+            css: { rotationY: 0 },
+            ease: Power3.easeOut
+        }, '+=2')
+        .to('#letter .flap.top', 0.8, {
+            css: { rotationX: 180 },
+            ease: Power2.easeInOut
+        }, '+=0.5')
+        .to('#letter', 0.8, {
+            css: { y: '+=200' },
+            ease: Power2.easeInOut
+        }, '-=0.8')
+        .to('#letter .card', 0.8, {
+            css: { y: '-=400' },
+            ease: Power2.easeInOut
+        })
+        .to('#letter .card', 0.8, {
+            css: { z: '+=1500' },
+            ease: Power2.easeInOut
+        }, '-=0.2')
+        .to('#letter', 0.8, {
+            css: { z: '-=1200' },
+            ease: Power2.easeInOut
+        }, '-=0.8')
+        .to('#letter .card', 0.8, {
+            css: { y: '+=100' },
+            ease: Power2.easeInOut
+        }, '-=0.8');
+
+        document.getElementById('restart').addEventListener('click', () => {
+            timeline.restart();
+        });
+    </script>
+</body>
+</html>
