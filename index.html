@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #f0f8ff;
+            background: linear-gradient(135deg, #006400, #8B0000);
             overflow: hidden;
         }
 
@@ -22,10 +22,10 @@
         }
 
         .card {
-            width: 300px;
-            height: 400px;
+            width: 320px;
+            height: 440px;
             border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             transform-style: preserve-3d;
             transition: transform 0.8s;
         }
@@ -43,7 +43,7 @@
         }
 
         .front {
-            background: url('https://source.unsplash.com/300x400/?christmas') no-repeat center/cover;
+            background: url('https://source.unsplash.com/320x440/?christmas-tree') no-repeat center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,6 +63,11 @@
 
         .back h2 {
             margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        .back p {
+            margin: 5px 0;
         }
 
         .snowflakes {
@@ -77,11 +82,8 @@
 
         .snowflake {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: white;
-            opacity: 0.8;
-            border-radius: 50%;
+            font-size: 1.5em;
+            color: white;
             animation: fall linear infinite;
         }
 
@@ -111,7 +113,7 @@
                 <p>Date: December 25, 2024</p>
                 <p>Time: 7:00 PM</p>
                 <p>Location: Winter Wonderland Cafe</p>
-                <p>Let's make this Christmas magical!</p>
+                <p>Let’s make this Christmas magical!</p>
             </div>
         </div>
         <div class="snowflakes"></div>
@@ -120,12 +122,15 @@
     <script>
         function createSnowflakes() {
             const snowflakeContainer = document.querySelector('.snowflakes');
+            const snowflakeEmojis = ['❄️', '❅', '❆', '❇'];
             for (let i = 0; i < 50; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.classList.add('snowflake');
+                snowflake.textContent = snowflakeEmojis[Math.floor(Math.random() * snowflakeEmojis.length)];
                 snowflake.style.left = `${Math.random() * 100}%`;
                 snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
                 snowflakeContainer.appendChild(snowflake);
             }
         }
